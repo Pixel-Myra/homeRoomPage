@@ -59,4 +59,4 @@ function openPopup(name) {
 
 function closePopup(name) {
   document.getElementById('popup-' + name).style.display = 'none';
-}
+}}
