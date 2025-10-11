@@ -64,7 +64,13 @@
                 <div class="features__text">Тиха та комфортна зона для сну й відпочинку.</div>
          </div>
    
-   
+               <div class="overlay" id="popup-kitchen">
+               <div class="container">
+                  <h3>Кухня</h3>
+                  <p>Місце, де народжується смак 🍲</p>
+                  <button onclick="closePopup('kitchen')">Закрити</button>
+               </div>
+            </div>
          <div class="features__item" onclick="openPopup('kitchen')">
    
             <img class="features__icon" src="images/kitchen.png" alt="">
@@ -72,18 +78,12 @@
             <div class="features__text">Місце, де народжується смак.
             </div>
          </div>
-            <div class="overlay" id="popup-kitchen">
-               <div class="container">
-                  <h3>Кухня</h3>
-                  <p>Місце, де народжується смак 🍲</p>
-                  <button onclick="closePopup('kitchen')">Закрити</button>
-               </div>
-            </div>
+
          <div class="features__item">
    
             <img class="features__icon" src="images/bathroom.png" alt="">
-            <h4 class="features__title">Ванна кімната</h4>
-            <div class="feature__text">Кімната свіжості та турботи про себе.
+                <h4 class="features__title">Ванна кімната</h4>
+                <div class="feature__text">Кімната свіжості та турботи про себе.</div>
             </div>
 
             <div class="features__item">
@@ -92,17 +92,6 @@
                 <div class="features__text">Тут можна створити затишний простір для відпочинку, розмов та зустрічей.</div>
             </div>
 
-            <div class="features__item">
-                <img class="features__icon" src="images/kitchen.png" alt="Кухня">
-                <h4 class="features__title">Кухня</h4>
-                <div class="features__text">Місце, де народжується смак.</div>
-            </div>
-
-            <div class="features__item">
-                <img class="features__icon" src="images/bathroom.png" alt="Ванна кімната">
-                <h4 class="features__title">Ванна кімната</h4>
-                <div class="features__text">Кімната свіжості та турботи про себе.</div>
-            </div>
 
             <div class="features__item">
                 <img class="features__icon" src="images/hostroom.png" alt="Дитяча" onclick="selectRoom('kids')">
