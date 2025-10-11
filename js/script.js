@@ -43,4 +43,20 @@ document.addEventListener('DOMContentLoaded', function() {
 function selectRoom(roomType) {
     console.log('Вибрано кімнату:', roomType);
     // Тут можна додати логіку для переходу на сторінку вибраної кімнати
+function showPopup() {
+  alert("Cam rosberesa 😊");
+}
+function openPopup() {
+    document.getElementById('popupOverlay').style.display = 'block';
+}
+
+function closePopup() {
+    document.getElementById('popupOverlay').style.display = 'none';
+}
+function openPopup(name) {
+  document.getElementById('popup-' + name).style.display = 'block';
+}
+
+function closePopup(name) {
+  document.getElementById('popup-' + name).style.display = 'none';
 }
