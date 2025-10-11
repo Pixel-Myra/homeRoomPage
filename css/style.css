@@ -1,16 +1,16 @@
 body {
-
    font-family: "Caveat", cursive;
    font-style: normal;
    margin: 0;
-
    font-size: 14px;
    color: #6c7279;
-   -webkit-font-smoothing: antialiaiaed;
+   -webkit-font-smoothing: antialiased;
    background-color: #fff;
 }
 
-
+body.no-scroll {
+   overflow: hidden;
+}
 
 *,
 *:before,
@@ -42,10 +42,9 @@ p {
 }
 
 .header__logo img {
-    width: 100px;   /* ширина зображення */
-    height: auto;   /* висота підлаштується пропорційно */
+   width: 100px;
+   height: auto;
 }
-
 
 .header__linner {
    display: flex;
@@ -69,13 +68,41 @@ p {
    opacity: .75;
    transition: opacity .1s linear;
 }
+
 .nav__link:first-child {
    margin-left: 0;
 }
 
 .nav__link:hover {
    opacity: 1;
+}
 
+/* Burger Menu */
+.burger {
+   display: none;
+   flex-direction: column;
+   cursor: pointer;
+   padding: 10px;
+}
+
+.burger__line {
+   width: 30px;
+   height: 3px;
+   background-color: #fff;
+   margin: 3px 0;
+   transition: all 0.3s ease;
+}
+
+.burger.active .burger__line:nth-child(1) {
+   transform: rotate(45deg) translate(8px, 8px);
+}
+
+.burger.active .burger__line:nth-child(2) {
+   opacity: 0;
+}
+
+.burger.active .burger__line:nth-child(3) {
+   transform: rotate(-45deg) translate(7px, -7px);
 }
 
 .intro {
@@ -84,11 +111,10 @@ p {
    justify-content: center;
    height: 750px;
    padding-top: 100px;
-   background: #1b1b1b url(/images/dark-blue-.png) ;
+   background: #1b1b1b url(/images/dark-blue-.png);
    background-size: cover;
    background-repeat: no-repeat;
    background-position: center;
-   
 }
 
 .intro__linner {
@@ -106,7 +132,6 @@ p {
    color: #fff;
    font-weight: 700;
    text-transform: uppercase;
-   
 }
 
 .intro__subtitle {
@@ -131,19 +156,18 @@ p {
    text-transform: uppercase;
    text-decoration: none;
    text-align: center;
-   transform: background .1s liner;
+   transition: background .1s linear;
 }
 
 .btn--red {
    background-color: #e84545;
-   
 }
 
 .btn--red:hover {
    background-color: #dd3434;
 }
 
-.btn--long:hover {
+.btn--long {
    min-width: 280px;
 }
 
@@ -164,33 +188,32 @@ p {
 }
 
 .features__item {
-   width: 33.33333%; 
+   width: 33.33333%;
    padding: 0 40px;
    margin: 25px 0;
    text-align: center;
-   transition: transform 0.3s; /* плавне збільшення всього блоку, якщо хочеш */
+   transition: transform 0.3s;
 }
 
 .features__icon {
-    width: 120px;             /* задай потрібний розмір іконки */
-    height: 120px;
-    transition: transform 0.3s; /* плавне збільшення картинки */
+   width: 120px;
+   height: 120px;
+   transition: transform 0.3s;
 }
 
-/* ефект при наведенні */
 .features__item:hover .features__icon {
-    transform: scale(1.5); /* збільшення на 10% */
+   transform: scale(1.5);
 }
 
-.features_title {
+.features__title {
    margin-bottom: 15px;
    font-size: 14px;
    color: #2d3033;
    font-weight: 700;
    text-transform: uppercase;
-
 }
 
+.features__text,
 .feature__text {
    font-size: 14px;
    line-height: 1.5;
@@ -211,8 +234,7 @@ p {
    overflow: hidden;
 }
 
-.works__item:hover 
-.works__content {
+.works__item:hover .works__content {
    opacity: 1;
 }
 
@@ -221,12 +243,9 @@ p {
    top: 50%;
    left: 50%;
    z-index: 1;
-
    width: 100%;
-      height: 100%;object-fit: cover;
-   /* Масштабує фото, щоб заповнити весь блок */
-        
-   z-index: 1;
+   height: 100%;
+   object-fit: cover;
    transform: translate3d(-50%, -50%, 0);
 }
 
@@ -259,6 +278,218 @@ p {
    color: #fff;
 }
 
+/* ===== АДАПТИВНІСТЬ ===== */
 
+/* Tablet (768px - 1024px) */
+@media (max-width: 1024px) {
+   .container {
+      padding: 0 15px;
+   }
 
+   .nav__link {
+      margin-left: 30px;
+      font-size: 12px;
+   }
 
+   .intro {
+      height: 600px;
+   }
+
+   .intro__title {
+      font-size: 50px;
+   }
+
+   .intro__subtitle {
+      font-size: 20px;
+      margin-bottom: 40px;
+   }
+
+   .features {
+      margin: 60px 0;
+   }
+
+   .features__item {
+      width: 50%;
+      padding: 0 30px;
+   }
+
+   .works__item {
+      width: 50%;
+      height: 300px;
+   }
+}
+
+/* Mobile (до 768px) */
+@media (max-width: 768px) {
+   .header {
+      height: auto;
+      position: fixed;
+      background-color: #1b1b1b;
+   }
+
+   .header__linner {
+      flex-direction: row;
+      padding: 15px 0;
+   }
+
+   .header__logo img {
+      width: 80px;
+   }
+
+   .burger {
+      display: flex;
+   }
+
+   .nav {
+      position: fixed;
+      top: 70px;
+      left: -100%;
+      width: 100%;
+      height: calc(100vh - 70px);
+      background-color: #1b1b1b;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding-top: 30px;
+      transition: left 0.3s ease;
+      z-index: 999;
+   }
+
+   .nav.active {
+      left: 0;
+   }
+
+   .nav__link {
+      margin-left: 0;
+      display: block;
+      padding: 15px 30px;
+      font-size: 16px;
+      border-bottom: 1px solid #515369;
+   }
+
+   .intro {
+      height: 500px;
+      padding-top: 120px;
+   }
+
+   .intro__linner {
+      padding: 0 20px;
+   }
+
+   .intro__title {
+      font-size: 36px;
+      margin-bottom: 20px;
+   }
+
+   .intro__subtitle {
+      font-size: 18px;
+      margin-bottom: 30px;
+   }
+
+   .btn {
+      padding: 12px 30px;
+      font-size: 12px;
+   }
+
+   .features {
+      margin: 40px 0;
+   }
+
+   .features__item {
+      width: 100%;
+      padding: 0 20px;
+      margin: 20px 0;
+   }
+
+   .features__icon {
+      width: 100px;
+      height: 100px;
+   }
+
+   .features__item:hover .features__icon {
+      transform: scale(1.2);
+   }
+
+   .works__item {
+      width: 100%;
+      height: 250px;
+   }
+}
+
+/* Small Mobile (до 480px) */
+@media (max-width: 480px) {
+   .container {
+      padding: 0 10px;
+   }
+
+   .header__logo img {
+      width: 70px;
+   }
+
+   .intro {
+      height: 450px;
+   }
+
+   .intro__title {
+      font-size: 28px;
+      margin-bottom: 15px;
+   }
+
+   .intro__subtitle {
+      font-size: 16px;
+      margin-bottom: 25px;
+   }
+
+   .btn {
+      padding: 10px 25px;
+      font-size: 11px;
+   }
+
+   .features {
+      margin: 30px 0;
+   }
+
+   .features__item {
+      padding: 0 15px;
+      margin: 15px 0;
+   }
+
+   .features__icon {
+      width: 80px;
+      height: 80px;
+   }
+
+   .features__title {
+      font-size: 13px;
+   }
+
+   .features__text,
+   .feature__text {
+      font-size: 13px;
+   }
+
+   .works__item {
+      height: 200px;
+   }
+}
+
+/* Landscape для мобільних */
+@media (max-height: 500px) and (orientation: landscape) {
+   .intro {
+      height: 400px;
+      padding-top: 40px;
+   }
+
+   .intro__title {
+      font-size: 32px;
+      margin-bottom: 15px;
+   }
+
+   .intro__subtitle {
+      font-size: 16px;
+      margin-bottom: 20px;
+   }
+
+   .btn {
+      padding: 10px 30px;
+   }
+}
