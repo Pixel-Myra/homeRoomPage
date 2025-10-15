@@ -12,7 +12,7 @@
 
 </head>
 <body>
-    <header class="header">
+    <header class="header ">
         <div class="container">
             <div class="header__linner">
                 <div class="header__logo">
@@ -25,33 +25,58 @@
                     <span class="burger__line"></span>
                 </div>
             <nav class="nav">
-               <a class="nav__link" href="#">Домашня сторінка</a>
-               <a class="nav__link" href="#">Вибір кімнати</a>
-               <a class="nav__link" href="#">Категорії предметів</a>
-               <a class="nav__link" href="#">Збережені кімнати</a>
-               <a class="nav__link" onclick="showPopup()" href="#">Допомога</a>
-            </nav>
-         </div>
-      </div>
-   </header>
+                <a class="nav__link" href="#">Домашня сторінка</a>
+                <a class="nav__link" href="#">Вибір кімнати</a>
+                <a class="nav__link" href="#">Категорії предметів</a>
+                <a class="nav__link" href="#">Збережені кімнати</a>
+                <a class="nav__link" onclick="showPopup()" href="#">Допомога</a>
+                <!-- Додайте в навігацію -->
+                 <div class="user-menu" id="userMenu" style="display: none;">
+                    <div class="user-avatar" id="userAvatar">
+                        <img src="default-avatar.jpg" alt="Аватар" id="avatarImg">
+                        <span class="user-name" id="navUserName"></span>
+                    </div>
+                    <div class="user-dropdown" id="userDropdown">
+                        <a href="#" class="dropdown-item" onclick="openProfileModal()">Мій профіль</a>
+                        <a href="#" class="dropdown-item" onclick="openSavedRooms()">Збережені кімнати</a>
+                        <a href="#" class="dropdown-item" onclick="openSettings()">Налаштування</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item logout" onclick="handleLogout()">Вийти</a>
+                    </div>
+                </div>
 
-                <nav class="nav" id="nav">
-                    <a class="nav__link" href="#">Домашня сторінка</a>
-                    <a class="nav__link" href="#">Вибір кімнати</a>
-                    <a class="nav__link" href="#">Категорії предметів</a>
-                    <a class="nav__link" href="#">Збережені кімнати</a>
-                    <a class="nav__link" href="#">Допомога</a>
-                </nav>
-            </div>
+                <!-- Кнопки входу/реєстрації (залишаються коли користувач не авторизований) -->
+                <div class="auth-buttons" id="authButtons">
+                    <button class="auth-btn" onclick="openAuthModal('login')">Увійти</button>
+                    <button class="auth-btn primary" onclick="openAuthModal('register')">Реєстрація</button>
+                </div>
+            </nav>
+
+         </div>            
+
+      </div>            
+   </header>
+        <div class=".burger-nav">
+             <nav class="nav burger-nav" id="nav">
+                <a class="nav__link" href="#">Домашня сторінка</a>
+                <a class="nav__link" href="#">Вибір кімнати</a>
+                <a class="nav__link" href="#">Категорії предметів</a>
+                <a class="nav__link" href="#">Збережені кімнати</a>
+                <a class="nav__link" href="#">Допомога</a>
+            </nav>
         </div>
-    </header>
+           
 
     <div class="intro">
         <div class="container">
             <div class="intro__linner">
                 <h1 class="intro__title">RoomSort — твій конструктор кімнат</h1>
                 <h2 class="intro__subtitle">Створи, організуй і прикрась кімнату своєї мрії!</h2>
-                <a class="btn btn--red" href="#">Почати</a>
+                <!-- <a class="btn btn--red" href="#">Почати</a> -->
+                <div class="nav-buttons">
+                    <button class="auth-btn" id="loginBtn">Увійти</button>
+                    <button class="auth-btn primary" id="registerBtn">Реєстрація</button>
+                </div>
             </div>
         </div>
     </div>
@@ -107,6 +132,106 @@
         </div>
     </div>
 
+
+
+        <button class="open-auth-btn" id="openAuth">Увійти або зареєструватися</button>
+
+
+    <!-- Модальне вікно авторизації -->
+    <div class="modal-overlay" id="authModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 id="modalTitle">Увійти в акаунт</h2>
+                <button class="close-btn" id="closeAuthModal">&times;</button>
+            </div>
+            
+            <div class="auth-tabs">
+                <button class="tab-btn active" data-tab="login">Вхід</button>
+                <button class="tab-btn" data-tab="register">Реєстрація</button>
+            </div>
+
+            <!-- Форма входу -->
+            <form class="auth-form active" id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Електронна пошта</label>
+                    <input type="email" id="loginEmail" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="loginPassword">Пароль</label>
+                    <input type="password" id="loginPassword" name="password" required>
+                    <div class="forgot-password">
+                        <a href="#" id="forgotPassword">Забули пароль?</a>
+                    </div>
+                </div>
+                
+                <button type="submit" class="submit-btn">Увійти</button>
+                
+                <div class="auth-divider">
+                    <span>або</span>
+                </div>
+                
+                <button type="button" class="social-btn google-btn">
+                    <span>Увійти через Google</span>
+                </button>
+            </form>
+
+            <!-- Форма реєстрації -->
+            <form class="auth-form" id="registerForm">
+                <div class="form-group">
+                    <label for="regUsername">Ім'я користувача</label>
+                    <input type="text" id="regUsername" name="username" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="regEmail">Електронна пошта</label>
+                    <input type="email" id="regEmail" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="regPassword">Пароль</label>
+                    <input type="password" id="regPassword" name="password" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="regConfirmPassword">Підтвердіть пароль</label>
+                    <input type="password" id="regConfirmPassword" name="confirmPassword" required>
+                </div>
+                
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms">Я погоджуюсь з <a href="#">умовами використання</a></label>
+                </div>
+                
+                <button type="submit" class="submit-btn">Зареєструватися</button>
+            </form>
+
+            <!-- Форма відновлення пароля -->
+            <form class="auth-form" id="forgotPasswordForm">
+                <div class="form-group">
+                    <label for="resetEmail">Електронна пошта</label>
+                    <input type="email" id="resetEmail" name="email" required>
+                    <p class="form-hint">Ми надішлемо вам посилання для скидання пароля</p>
+                </div>
+                
+                <button type="submit" class="submit-btn">Надіслати посилання</button>
+                
+                <div class="back-to-login">
+                    <a href="#" id="backToLogin">← Повернутися до входу</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Інформація про користувача -->
+    <div class="user-info" id="userInfo" style="display: none;">
+        <div class="user-card">
+            <h3>Вітаємо, <span id="userName"></span>!</h3>
+            <p>Email: <span id="userEmail"></span></p>
+            <button class="logout-btn" id="logoutBtn">Вийти</button>
+        </div>
+    </div>
+    
     <script src="js/script.js"></script>
 </body>
 </html>
